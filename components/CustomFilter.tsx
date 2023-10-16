@@ -9,14 +9,9 @@ import { CustomFilterProps } from '@/types';
 import { updateSearchParams } from '@/utils';
 
 
-const CustomFilter = ({title ,options} : CustomFilterProps) => {
-  const router = useRouter();
+const CustomFilter = ({title ,options, setFilters} : CustomFilterProps) => {
+  
   const [selected, setSelected] = useState(options[0]);
-
-  const handleParams = ( e: {title :string, value:string} )=>{
-    const newPathName = updateSearchParams(title, e.value.toLowerCase());
-    router.push(newPathName);
-  }
 
   return (
     <div className='w-fit'>
@@ -24,7 +19,7 @@ const CustomFilter = ({title ,options} : CustomFilterProps) => {
         value={selected}
         onChange={(e) => {
         setSelected(e);
-        handleParams(e);
+        setFilters(e.value);
           }
         }
       >
